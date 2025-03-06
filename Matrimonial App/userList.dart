@@ -445,9 +445,9 @@ class _UserListScreenState extends State<UserListScreen> {
                                     SizedBox(height: 8),
                                     Row(
                                       children: [
-                                        Icon(Icons.email, color: Colors.green, size: 24),
+                                        Icon(Icons.location_city, color: Colors.green, size: 24),
                                         SizedBox(width: 8),
-                                        Text(user?['email'],
+                                        Text(user?['city'],
                                             style: TextStyle(fontSize: 14, color: Colors.black54)),
                                       ],
                                     ),
@@ -492,6 +492,7 @@ class _UserListScreenState extends State<UserListScreen> {
                                             builder: (context) => AddUserScreen(user: user), // Pass user data
                                           ),
                                         ).then((updatedUser) {
+
                                           if (updatedUser != null) {
                                             fetchUsers(); // Refresh user list after edit
                                           }
@@ -500,6 +501,32 @@ class _UserListScreenState extends State<UserListScreen> {
                                     ),
 
 
+                                    // IconButton(
+                                    //   icon: Icon(Icons.delete, color: Colors.red, size: 26),
+                                    //   onPressed: () {
+                                    //     showDialog(
+                                    //       context: context,
+                                    //       builder: (context) => AlertDialog(
+                                    //         title: Text('Delete'),
+                                    //         content: Text('Are you sure you want to delete?'),
+                                    //         actions: [
+                                    //           TextButton(
+                                    //             onPressed: () => Navigator.pop(context),
+                                    //             child: Text('No', style: TextStyle(color: Colors.black)),
+                                    //           ),
+                                    //           TextButton(
+                                    //             onPressed: ()async {
+                                    //               await members.deleteMember(user['id']);
+                                    //               setState(() {});
+                                    //               Navigator.pop(context);
+                                    //             },
+                                    //             child: Text('Yes', style: TextStyle(color: Colors.black)),
+                                    //           ),
+                                    //         ],
+                                    //       ),
+                                    //     );
+                                    //   },
+                                    // ),
                                     IconButton(
                                       icon: Icon(Icons.delete, color: Colors.red, size: 26),
                                       onPressed: () {
@@ -514,9 +541,9 @@ class _UserListScreenState extends State<UserListScreen> {
                                                 child: Text('No', style: TextStyle(color: Colors.black)),
                                               ),
                                               TextButton(
-                                                onPressed: ()async {
+                                                onPressed: () async {
                                                   await members.deleteMember(user['id']);
-                                                  setState(() {});
+                                                  fetchUsers(); // Refresh user list after deletion
                                                   Navigator.pop(context);
                                                 },
                                                 child: Text('Yes', style: TextStyle(color: Colors.black)),
@@ -526,6 +553,7 @@ class _UserListScreenState extends State<UserListScreen> {
                                         );
                                       },
                                     ),
+
                                   ],
                                 ),
                               ],

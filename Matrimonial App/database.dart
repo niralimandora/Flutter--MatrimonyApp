@@ -15,6 +15,7 @@ class Members {
           CREATE TABLE Members(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
+            city TEXT,
             email TEXT,
             phone INTEGER,
             dateOfBirth TEXT,

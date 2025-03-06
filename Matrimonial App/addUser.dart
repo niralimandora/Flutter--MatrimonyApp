@@ -24,6 +24,20 @@ class _AddUserScreenState extends State<AddUserScreen> {
   TextEditingController? _confirmPassword = TextEditingController();
   bool _isObscureConfirmPassword = true;
   bool _isObscurePassword = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    _fullName?.text=widget.user!["name"];
+    _email?.text=widget.user!["email"];
+    _dateOfBirth?.text=widget.user!["dateOfBirth"];
+    _password?.text=widget.user!["password"];
+    _confirmPassword?.text=widget.user!["password"];
+    _city=widget.user!["city"];
+    _gender=widget.user!["gender"];
+    _hobbies=widget.user!["hobbies"];
+    _phone?.text=widget.user!["phone"].toString();
+    super.initState();
+  }
   // For City dropdown
   final List<String> _cities = [
     "Agra",
@@ -492,6 +506,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
                               'email': _email?.text,
                               'phone': _phone?.text,
                               'dateOfBirth': _dateOfBirth?.text,
+                              'city':_city,
                               'gender': _gender,
                               'hobbies': _hobbies,
                               'password': _password?.text,
@@ -522,6 +537,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
                               _confirmPassword?.clear();
                             });
                           }
+                          Navigator.pop(context);
                         },
 
                         child: Text(
